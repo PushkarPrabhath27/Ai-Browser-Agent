@@ -144,3 +144,34 @@
   - This acknowledgment is also extended to the _file content_ of any skill I write during a phase. If I update a skill from a phase (e.g., adding a new trap I encounter), I'll mention it in the phase's handoff.
 - **Why**: spec §Phase 0 / NFR2 (explainability) doesn't only apply to runtime behavior; it applies to how the repo is built, since the build process is a deliverable in its own right. Reproducibility across Hermes sessions is part of the engineering thesis.
 - **What's left**: nothing; this rule starts at Phase 2 plan and continues forever.
+
+### Entry 1.8 — Phase 1 closed; Phase 2 planning queued
+
+- **When**: late Session-1.
+- **What changed**: Contributor replied with explicit "**Phase 1 accepted**." Engineering-log Phase 1 entry moved from `in progress` to `accepted`. Phase 1.5 entry appended capturing the four-corrections round, the standing rules (skill visibility, spec-error pushback, pacing discipline), and the contributor-deferred items (PAT scope upgrade, branch protection in UI).
+- **Contributor-deferred items** (logged in backlog-out-of-scope.md and engineering-log.md Phase 1.5):
+  - Branch protection on `main`: contributor is enabling in GitHub UI right now. I will not re-verify unless a future push behaves unexpectedly.
+  - PAT `Workflows: read+write` upgrade: deferred to Phase 2 so the restoration commit can bundle with the real wiring of `integration.yml`. One PAT upgrade, one future operation; not two.
+- **Status of state**:
+  - Local HEAD: `931dc4fd8be45b69093484ddb5d090375095bf47` (8 commits on `main`).
+  - Remote HEAD: `931dc4fd` (verified; same hash).
+  - Working tree: clean.
+- **What's left**: phase 2 plan. NOT WILL BE WRITTEN until contributor approves the upcoming plan in writing.
+- **Resume cmd (for the next session that finds Phase 1 accepted)**:
+  ```bash
+  cd "/home/pushk/Projects/Ai agents project"
+  # Sync check: ensure local main == remote main
+  LOCAL=$(git rev-parse main)
+  REMOTE=$(git ls-remote origin main | awk '{print $1}')
+  [ "$LOCAL" = "$REMOTE" ] && echo "still in sync: $LOCAL" || echo "DIVERGENCE"
+  # Confirm engineering-log.md reflects 'accepted' state for Phase 1.
+  grep -A1 "## Phase 1" docs/decisions/engineering-log.md
+  ```
+
+### Entry 1.9 — Standing-rule confirmation before Phase 2 planning
+
+- **When**: very late Session-1 (this turn).
+- **What changed**: confirming the Phase 2 plan will be authored in line with the contributor's standing rule: "**if you invoke or update any skill during planning or execution, that fact must appear explicitly in that phase's plan or handoff report — not buried, not assumed.**"
+  - **No skill will be invoked or updated during Phase 2 plan authoring.** The Phase 1 skill `monorepo-typescript-bootstrap` is purely about Phase 1's tool-configuration traps (ESLint v9 flat config, depcruiser pattern gotchas, etc.). Phase 2's work is about Zod schemas, the trace package, and the fixture site — none of those are touched by that skill.
+  - **A natural Phase-2 skill may emerge from execution.** Phase 2's most subtle traps will likely be in: (a) Zod v4 vs v3 schema patterns for nominal types, (b) Prisma+SQLite for the trace package, and (c) heading-free contrast-and-aria-name preservation logic for `/unstable`. I will surface skill creation/update events in the Phase 2 handoff; for the plan itself, no skill usage anticipated.
+- **Honest check before locking the plan**: do I want to call this skill during planning? The twelve ESLint/depcruiser/composite-TS traps it covers are Phase 1's, not Phase 2's; reading it would consume context that doesn't apply. **Decision: no skill call during Phase 2 plan authoring.**

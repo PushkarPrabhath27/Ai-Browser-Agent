@@ -44,3 +44,16 @@ Every entry: a one-line justification for exclusion, per the spec's anti-drift r
 | Postgres for trace storage in Phase 1                       | Concurrent writes between phases.        | Spec says SQLite first, Postgres as migration path. Premature swap would violate simplicity.                                                              |
 | Generic React (over Preact) for the widget bundle           | Larger ecosystem.                        | Preact is ~3KB; bundle size is the whole point of an embeddable widget. Spec §Dependency Table: swap to React "trivially if bundle size stops mattering." |
 | Built-in benchmark tUI / web dashboard for the eval harness | Better showcase.                         | Adds a non-trivial UI surface to a CLI tool. Report-as-markdown is sufficient and free.                                                                   |
+
+## Deliberately deferred (not "out of scope" — explicitly parked for the right future moment)
+
+### Phase 1 — CI workflow activation (PAT scope + workflow-file restoration)
+
+- **What**: The four GitHub Actions workflow files (`ci.yml`, `integration.yml`, `eval.yml`, `deploy.yml`) currently live under `docs/ci-drafts/`, not at `.github/workflows/`. This is because Phase 1's fine-grained PAT has Contents: read+write but not Workflows: read+write, and GitHub rejects any push that creates/modifies `.github/workflows/*` without the latter scope. Activating CI on `main` (so pushes are gated by status checks) therefore requires upgrading the PAT, moving the workflow files back, and committing.
+- **Why deferred**: Wiring these now would produce a passive CI pipeline that runs `npm run lint && npm test && npm run typecheck && npm run boundaries && npm run build` on every push — all of which are already gated by `pre-push` locally and would yield no new signal until `integration.yml` exists to drive real browser tests. That work belongs to **Phase 2**, where the fixture-site lands and integration.yml becomes a meaningful runner against real browser-automation paths. Bundling the PAT upgrade with the integration-yml wiring is one operation rather than two, and the restoration commit then does something real instead of "just moving files back."
+- **Trigger to revisit**: Phase 2 plan approval. At that point I will:
+  1. Include "restore CI workflows + wire integration.yml for actual use" as a Phase-2 deliverable.
+  2. Ask for the PAT upgrade one time, then never again for the rest of the project.
+- **Reasoning source**: `.hermes/PROGRESS.md` Entry 1.6 + the contributor's decision in this turn that "I'd rather bundle the PAT scope upgrade with actually wiring integration.yml for real in Phase 2."
+
+> **This is not a missed scope item.** It is an intentional, time-sequenced deferral: the API surface that makes the upgrade meaningful is itself scheduled for Phase 2.

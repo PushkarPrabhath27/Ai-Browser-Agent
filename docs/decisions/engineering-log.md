@@ -10,8 +10,8 @@ This file is _not_ the session-spanning continuity log (see `.hermes/PROGRESS.md
 
 ## Phase 1 — Repository Bootstrap
 
-- Status: in progress (implementation complete; Reviewer report appended below)
-- Date: 2025-01
+- Status: **accepted** (explicit contributor ack on 2025-07; all four corrections round-tripped)
+- Date: 2025-01 (accepted 2025-07)
 
 ### Deliverables verification
 
