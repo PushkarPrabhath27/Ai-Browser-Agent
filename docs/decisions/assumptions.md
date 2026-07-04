@@ -67,3 +67,10 @@ Each entry: timestamp-free, conservative-choice, reasoning, the spec principle i
 - **Assumption**: Install ESLint v9 and write `eslint.config.js` (flat config).
 - **Reasoning**: ESLint v9 deprecated the `.eslintrc.*` family; defaulting to v9 means no forced migration inside the project's own lifetime. The Phase 1 plan correctly checked `--version` post-install before writing the file.
 - **Preserves**: Forward compatibility, "use current non-deprecated formats" rule (project owner's correction C1).
+
+### A1.11 — GitHub push credential embedded in remote URL + ~/.git-credentials helper
+
+- **Assumption**: After contributor replaces the stale fine-grained PAT in `~/.hermes/.env` with a fresh one scoped to `Contents: read+write` on `Ai-Browser-Agent`, all subsequent phases push via `git push origin <branch>` without prompts.
+- **Reasoning**: Documented in ADR-0006. URL-embedded credential is the primary mechanism; `~/.git-credentials` (mode 0600) plus `credential.helper=store` (repo-local) is the fallback.
+- **Why this matters now**: Any `git push` against a stale PAT fails 401. Until the contributor rotates the token, Phase 1's commits are local-only. No new code/design needed once a valid token is in place — the workflow activates without further action.
+- **Preserves**: Spec §Operating Model — Hermes owns execution end-to-end; human involvement is "review and approve." Aligns with ADR-0006.
