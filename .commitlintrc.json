@@ -25,7 +25,12 @@
         "demo-host",
         "root",
         "deps",
-        "release"
+        "release",
+        "ci",
+        "docs",
+        "adr",
+        "commitlint",
+        "husky"
       ]
     ],
     "scope-empty": [2, "never"],

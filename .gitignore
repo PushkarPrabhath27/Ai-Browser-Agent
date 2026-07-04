@@ -33,6 +33,8 @@ packages/reasoning/cassettes/recorded/
 # OS / transient
 *.tsbuildinfo
 
-# Internal scratch files generated during adversarial testing; never to be committed
-**/_adversarial*.ts
-**/_adversarial*.js
+# Internal scratch files generated during adversarial testing; never to be committed.
+# Matches any file whose basename contains 'adversarial' anywhere (e.g. _adversarial.ts,
+# __adversarial__.ts, x_adversarial_y.js).
+**/*adversarial*
+
