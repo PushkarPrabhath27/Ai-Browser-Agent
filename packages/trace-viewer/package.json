@@ -1,0 +1,25 @@
+{
+  "name": "@eai/trace-viewer",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Standalone read-only SPA for step-by-step replay of any recorded task. Components: `PlanPanel`, `StepCard` (screenshot pair + rationale + verdict + policy decision), `OutcomeSummary`. Click-to-expand full raw event payload. Filter by subsystem or event type.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --build",
+    "test": "vitest run"
+  }
+}

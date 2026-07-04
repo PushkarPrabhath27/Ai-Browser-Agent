@@ -1,0 +1,25 @@
+{
+  "name": "@eai/widget",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Embeddable Preact SDK. Goal input + start button, live step feed, live screenshot pane, approval modal, terminal status banner. State driven purely by SSE events — no client-side polling, no duplicated business logic.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --build",
+    "test": "vitest run"
+  }
+}

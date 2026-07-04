@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/core" },
+    { "path": "./packages/trace" },
+    { "path": "./packages/perception" },
+    { "path": "./packages/executor" },
+    { "path": "./packages/verifier" },
+    { "path": "./packages/reasoning" },
+    { "path": "./packages/orchestrator" },
+    { "path": "./packages/server" },
+    { "path": "./packages/widget" },
+    { "path": "./packages/trace-viewer" },
+    { "path": "./packages/eval" },
+    { "path": "./packages/fixture-site" }
+  ]
+}

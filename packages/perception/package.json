@@ -1,0 +1,25 @@
+{
+  "name": "@eai/perception",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Live browser state \u2192 `PerceptionSnapshot`. Resolves a snapshot's `ref` to a Playwright locator. Element-indexing algorithm over the accessibility tree, with visibility filtering and bounded truncation.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --build",
+    "test": "vitest run"
+  }
+}

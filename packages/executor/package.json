@@ -1,0 +1,25 @@
+{
+  "name": "@eai/executor",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Execution of exactly one resolved action. The safety gate chokepoint — domain allowlist enforcement and sensitive-action detection. Mechanical-only: this tells you the click landed, not whether it was the right click.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --build",
+    "test": "vitest run"
+  }
+}

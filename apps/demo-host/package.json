@@ -1,0 +1,8 @@
+{
+  "name": "@eai/demo-host",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Minimal page that embeds the widget via the public integration path. Used as the project's flagship demo.",
+  "license": "MIT",
+  "type": "module"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@eai/verifier",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Layered verification: structural checks first (URL delta, target element appearance/disappearance, DOM diff), model-assisted fallback only when structural evidence is genuinely inconclusive. Always bounded to one model call per verification event.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --build",
+    "test": "vitest run"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@eai/trace",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Append-only persistence (SQLite via Prisma) and ordered query-by-task for every trace event. The recorder; nothing more.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --build",
+    "test": "vitest run"
+  }
+}

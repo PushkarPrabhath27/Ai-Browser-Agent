@@ -1,0 +1,25 @@
+{
+  "name": "@eai/reasoning",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Provider-agnostic reasoning interface (`decomposeGoal`, `decideNextAction`). Adapters for Gemini, Groq, Claude, OpenAI, Ollama (opt-in), Nvidia NIM. `FixtureReplayProvider` for cassettes and `ScriptedFakeProvider` for zero-network deterministic tests. Versioned prompt templates. One-shot malformed-output repair loop.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --build",
+    "test": "vitest run"
+  }
+}

@@ -1,0 +1,34 @@
+node_modules/
+dist/
+coverage/
+data/
+.husky/_
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Secrets (never commit)
+.env
+.env.local
+.env.*.local
+
+# Playwright artifacts
+playwright-report/
+test-results/
+
+# Test cassettes directory (intellectual property; recorded request/response pairs)
+packages/reasoning/cassettes/recorded/
+
+# OS / transient
+*.tsbuildinfo

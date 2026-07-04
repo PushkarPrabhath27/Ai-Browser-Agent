@@ -1,0 +1,42 @@
+{
+  "name": "embeddable-ai-web-agent",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Open-source, self-hostable, embeddable AI web agent. Six-subsystem architecture: Reasoning, Perception, Executor, Verifier, Orchestrator, Trace. Reasoning is an unreliable dependency; everything else is fault-tolerance around it.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.10.0 <23"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "boundaries": "depcruise packages/ apps/ --config .dependency-cruiser.js",
+    "dev": "concurrently -n server,fixture-site -c blue,magenta \"npm:dev -w packages/server\" \"npm:dev -w packages/fixture-site\"",
+    "build": "tsc --build",
+    "prepare": "husky || true"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@types/node": "^22.10.2",
+    "concurrently": "^9.1.0",
+    "dependency-cruiser": "^16.10.0",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2",
+    "vitest": "^2.1.8"
+  }
+}

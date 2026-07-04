@@ -1,0 +1,25 @@
+{
+  "name": "@eai/core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Shared types, branded IDs, error taxonomy. The only package with zero internal dependencies. Sole source of truth for cross-subsystem contracts.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --build",
+    "test": "vitest run"
+  }
+}

@@ -1,0 +1,7 @@
+dist
+node_modules
+coverage
+data
+.husky
+apps/demo-host/dist
+*.log

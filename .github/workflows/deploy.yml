@@ -1,0 +1,14 @@
+name: deploy
+
+# Fleshed out in Phase 11 (Hardening & Deployment). Manual dispatch only,
+# so cloud spend is zero by default. Phase 11 may swap this for a real image
+# build + GitHub Container Registry publish.
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "deploy.yml wired in Phase 11."

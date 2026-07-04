@@ -1,0 +1,17 @@
+# Phase 11 writes the Dockerfile. This file exists now so that any future
+# Docker context (CI cache, deploy pipeline) ignores local-only paths from day one.
+node_modules
+dist
+data
+.env
+.env.*
+.husky
+coverage
+playwright-report
+test-results
+apps/demo-host/dist
+*.log
+.git
+.github
+docs
+.claude

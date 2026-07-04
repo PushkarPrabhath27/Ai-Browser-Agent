@@ -1,0 +1,25 @@
+{
+  "name": "@eai/eval",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Versioned benchmark (~20 tasks) against the fixture site. CLI runner that executes each task via the real Orchestrator against a configurable `REASONING_PROVIDER`. Produces JSON + markdown report. No web surface.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --build",
+    "test": "vitest run"
+  }
+}
