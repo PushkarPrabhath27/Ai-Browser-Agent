@@ -7,19 +7,20 @@
 #      integration.yml on CI, not on the developer's machine for every push.)
 #   2. Lightweight type/lint smoke so trivial regressions are caught at the
 #      source before traveling to the remote. Full ESLint is intentionally not
-#      run here — it's slow and the suite is already gated by CI status checks
-#      against the remote.
+#      run here because it's slow and the suite is already gated by CI status
+#      checks against the remote.
 #
 # This hook intentionally does NOT run commitlint:
 # - `commitlint --edit` is a commit-msg-time hook (validates a commit message
 #   file being written), not a pre-push-time hook.
-# - For pre-push, validating a *range* of commits requires either:
-#     a) `commitlint --from=<old>..<to>` (only available in commitlint v19+)
-#     b) iterating `git log <range> --pretty=%B | commitlint`
+# - commit-msg hook handles per-commit validation; this hook handles per-push
+#   regression gates.
 # - Spec §CI strategy says CI is the authoritative gate. Treat this hook as a
 #   "don't push broken tests" hedge, not as the policy source of truth.
 
-set -euo pipefail
+# Exit on any error. Note: wsl dash defaults to /bin/sh which does NOT honor
+# `set -o pipefail`. Use only POSIX-portable constructs.
+set -e
 
 cd "$(git rev-parse --show-toplevel)"
 
