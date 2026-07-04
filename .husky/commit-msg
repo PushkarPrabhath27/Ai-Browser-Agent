@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# commit-msg gate for the embeddable-ai-web-agent monorepo.
+# Ensures every commit message conforms to Conventional Commits (see .commitlintrc.json).
+
+exec npx --no-install commitlint --edit "$1"

@@ -1,1 +1,35 @@
-npx --no-install commitlint --edit "$1"
+#!/usr/bin/env bash
+# Pre-push gate for the embeddable-ai-web-agent monorepo.
+#
+# Two responsibilities:
+#   1. Run the unit + contract test suite against the current HEAD. If tests fail,
+#      the push is blocked. (Integration tests against a real browser belong in
+#      integration.yml on CI, not on the developer's machine for every push.)
+#   2. Lightweight type/lint smoke so trivial regressions are caught at the
+#      source before traveling to the remote. Full ESLint is intentionally not
+#      run here — it's slow and the suite is already gated by CI status checks
+#      against the remote.
+#
+# This hook intentionally does NOT run commitlint:
+# - `commitlint --edit` is a commit-msg-time hook (validates a commit message
+#   file being written), not a pre-push-time hook.
+# - For pre-push, validating a *range* of commits requires either:
+#     a) `commitlint --from=<old>..<to>` (only available in commitlint v19+)
+#     b) iterating `git log <range> --pretty=%B | commitlint`
+# - Spec §CI strategy says CI is the authoritative gate. Treat this hook as a
+#   "don't push broken tests" hedge, not as the policy source of truth.
+
+set -euo pipefail
+
+cd "$(git rev-parse --show-toplevel)"
+
+echo "[husky/pre-push] running full test suite at HEAD"
+npm test --silent
+
+echo "[husky/pre-push] running typecheck at HEAD"
+npm run typecheck --silent
+
+echo "[husky/pre-push] running boundary check at HEAD"
+npm run boundaries --silent
+
+echo "[husky/pre-push] all gates green; push proceeds"
