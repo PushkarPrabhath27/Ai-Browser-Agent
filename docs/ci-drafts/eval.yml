@@ -1,0 +1,16 @@
+name: eval
+
+# Fleshed out in Phase 9. Default invocation must not require a paid credential:
+# should be runnable against Ollama (opt-in) or Gemini free tier. Scheduled and
+# manual-dispatch; non-blocking per spec §CI/CD Strategy.
+#
+# Until then, placeholder.
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "eval.yml wired in Phase 9 (Evaluation Harness)."

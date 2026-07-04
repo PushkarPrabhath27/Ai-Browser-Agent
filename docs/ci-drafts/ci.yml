@@ -1,0 +1,49 @@
+name: ci
+
+# Runs on every push to any branch and every PR. Phase 1 contract:
+#   - lint           : ESLint flat config (v9)
+#   - format:check   : Prettier (informational if fails; PR-blocking later)
+#   - typecheck      : tsc --build (composite project references)
+#   - test           : Vitest workspace run (unit + contract tests; no browser, no model)
+#   - boundaries     : dependency-cruiser enforces the package DAG
+# No Docker. No Ollama. No live reasoning provider calls.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit + contract tests (no browser, no model)
+        run: npm test
+
+      - name: Boundary check (dependency-cruiser)
+        run: npm run boundaries
+
+      - name: Build
+        run: npm run build
